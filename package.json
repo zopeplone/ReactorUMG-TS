@@ -1,0 +1,19 @@
+{
+  "name": "reactorumg",
+  "private": false,
+  "version": "1.0.2",
+  "type": "commonjs",
+  "main": "index.js",
+  "keywords": [
+    "react",
+    "react-umg",
+    "unreal engine"
+  ],
+  "author": "Caleb196x",
+  "license": "MIT",
+  "description": "ReactorUMG is a helper plugin for Unreal Engine that lets you build UMG game UI and editor UI using React.",
+  "dependencies": {
+    "react": "^18.0.0",
+    "react-reconciler": "^0.28.0"
+  }
+}
