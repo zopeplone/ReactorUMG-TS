@@ -13,5 +13,11 @@
       "./node_modules/@types",
       "./types"
     ]
-  }
+  },
+  "exclude": [
+    "node_modules",
+    "types",
+    "**/*.test.ts",
+    "test"
+  ]
 }

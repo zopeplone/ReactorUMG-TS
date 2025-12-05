@@ -53,4 +53,4 @@ declare module "*.riv" {
  * @param pseudo Defaults to "base".
  * @param mediaQuery Defaults to null.
  */
-declare function getCssStyleFromGlobalCache(className: string, pseudo?: string, mediaQuery?: string | null);
+declare function getCssStyleFromGlobalCache(className: string, pseudo?: string, mediaQuery?: string | null): Record<string, any> | undefined;

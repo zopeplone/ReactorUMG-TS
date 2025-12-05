@@ -705,3 +705,5 @@ declare module "reactorumg" {
 
     var ReactorUMG : TReactorUMG;
 }
+
+declare function getCssStyleFromGlobalCache(className: string, pseudo?: string, mediaQuery?: string | null): Record<string, any> | undefined;
