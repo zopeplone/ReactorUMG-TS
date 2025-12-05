@@ -1,61 +1,134 @@
-# ReactorUMG
+<h1 id="reactorumg">ReactorUMG</h1>
 
-ReactorUMG 是一个运行在 Unreal Engine + puerts 环境中的 React 渲染器，利用 `react-reconciler` 将 JSX/TSX 直接转成原生 UMG Widget，帮助你用熟悉的前端范式构建游戏 UI 和编辑器工具界面。
+![Liscense](https://img.shields.io/badge/license-MIT-blue.svg)
+![Coverage](https://img.shields.io/badge/coverage-90%25-orange)
+[![Unreal Engine](https://img.shields.io/badge/Unreal%20Engine-5.x-purple)](https://www.unrealengine.com/)
+![React](https://img.shields.io/badge/react-%5E18.0.0-61DAFB?logo=react&logoColor=white)
+[![Docs](https://img.shields.io/badge/docs-available-blue?style=flat&logo=readthedocs&logoColor=white)](https://caleb196x.github.io/ReactorUMGOnlineDoc/)
+[![npm version](https://img.shields.io/npm/v/reactorumg)](https://www.npmjs.com/package/reactorumg)
+![Status](https://img.shields.io/badge/status-active-brightgreen)
 
-## 功能特性
-- React 18 + `react-reconciler` 驱动，底层通过原生 `UE.UMGManager` 创建、更新、销毁 Widget。
-- HTML 风格标签：`div`/`section`/`article`/`form`、`button`、`input`、`textarea`、`select`、`img`、`progress`、`style`，支持 `className`/`id`/属性选择器。
-- UMG 组件封装：CanvasPanel、Overlay、Flex/Grid/UniformGrid、WrapBox、ScrollBox、Border、Button、TextBlock、RichTextBlock、CheckBox、ComboBox、ProgressBar/RadialSlider/Slider/SpinBox、SafeZone、ScaleBox、SizeBox、RetainerBox、InvalidationBox、ExpandableArea、ListView/TreeView/TileView、Viewport、Rive、Spine 等（详见 `components.js`）。
-- 样式解析接近 CSS：布局（flex/grid/canvas/overlay）、gap/margin/padding、宽高及 min/max、背景图与颜色、字体、透明度、transform/translate/rotate/scale、object-fit、zIndex、overflow、对齐方式等；支持 `<style>` 标签注册全局样式。
-- 资源与交互：图片异步加载（本地/网络/UE 资源）、按钮与输入事件回调、进度与滑杆数值绑定、RetainerBox/InvalidationBox 性能组件、Rive 与 Spine 动画挂载。
+<img src="./docs/imgs/Cover.png" width="600" alt="Cover" />
 
-## 运行要求
-- Unreal Engine 项目中已接入 puerts，并提供 `UE.UMGManager`（通常由原生插件或 ReactorUIWidget 提供）。
-- Node 侧依赖：React 18.x、`react-reconciler` ^0.28（已在 `package.json` 声明）。
+**This part is the TypeScript runtime scripts bundled with the ReactorUMG plugin, published as an NPM package.**
 
-## 安装
-```bash
-npm install reactorumg
-# 或将编译后的脚本放入 Content/JavaScript 供 puerts 加载
-```
+ReactorUMG helps you build **UMG** game UI and editor UI in Unreal Engine using **React**.
+The plugin is built on **PuertTS** scripting and pairs with AI assistance so you can develop and iterate UI efficiently with a web-style workflow. **It is especially suited to using AI to quickly build a variety of in-editor UI tools.**
 
-## 快速上手
-```ts
-import React from 'react';
-import { ReactorUMG, CanvasPanel, Button, TextBlock } from 'reactorumg';
+> **Keywords:** Unreal Engine, UE5, UMG, UI, Slate, React, TypeScript, Plugin, Hot Reload, Live Preview, Puerts
 
-export function mount(widget: UE.UserWidget) {
-  const root = ReactorUMG.render(
-    widget.WidgetTree,
-    <CanvasPanel style={{ width: '100%', height: '100%', padding: 24 }}>
-      <style>{`
-        .title { font-size: 24px; color: #f8f8f8; }
-        .primary { padding: 12px 18px; background: #3b82f6; border-radius: 8px; color: #fff; }
-      `}</style>
+⚠️ **Alpha stage**: The API and structure may still change; an official version will be released once stabilized. Given that in-game UIs typically have high visual and interactive complexity, the current version of the plugin still has limitations in adaptation completeness and cannot fully meet the presentation requirements of production-level game UIs. **Therefore, at this stage, we strongly recommend prioritizing its application to UI development for editor extension tools, to improve tool development efficiency.***
 
-      <TextBlock className="title">Hello ReactorUMG</TextBlock>
-      <Button className="primary" onClick={() => console.log('clicked')}>
-        点击开始
-      </Button>
-    </CanvasPanel>
-  );
+⚠️ **Before you start**: Please read the FAQ first to avoid known pitfalls.
 
-  return () => ReactorUMG.release(root);
-}
-```
+---
+[跳转到中文](./README_zh.md)
 
-## 样式与布局
-- `div`/语义化标签默认使用 flex 布局；`style.display='grid'` 启用 CSS Grid；`style.position='relative'` 触发 overlay；CanvasPanel 适合绝对定位；WrapBox 支持自动换行。
-- 支持 `className`、`id`、属性选择器与 `<style>` 标签注入的样式，后者可用后代选择器；inline style 拥有最高优先级。
-- 常用属性覆盖：margin/padding/gap、宽高及 min/max、background（颜色/图片/size/repeat/position）、color 与 font、border/outline、transform/translate/rotate/scale、opacity、object-fit、overflow、justify/align、自适应尺寸与 zIndex。
+<h2 id="767fa455">Contents</h2>
 
-## 组件速览
-- HTML 风格：`div`、`span`、`p`、`button`、`input`、`textarea`、`select`、`img`、`progress`、`style`。
-- UMG：CanvasPanel、Grid、Overlay、UniformGrid、WrapBox、VerticalBox、ScrollBox、Border、Button、CheckBox、ComboBox、ProgressBar、RadialSlider、Slider、SpinBox、SafeZone、ScaleBox、SizeBox、Spacer、RetainerBox、InvalidationBox、ExpandableArea、ListView、TreeView、TileView、Viewport、Rive、Spine、Throbber/CircularThrobber、Image、TextBlock、RichTextBlock 等。
-- 事件：按钮点击/按压、输入提交、滑杆/进度变化、下拉选项切换、动画事件等通过 props 传入回调。
++ [Why use ReactorUMG](#ca757ae1)
++ [Core Features](#d2ffce75)
++ [System Requirements](#19c93d0a)
++ [Install and Quick Start](#2e52a2da)
++ [Project Structure Example](#f2407408)
++ [FAQ](#faq)
++ [Roadmap](#c644eeae)
++ [Contribution Guide](#f31ccad5)
++ [License](#20a28457)
++ [Links and Resources](#477c63ed)
 
-## 卸载
-调用 `ReactorUMG.release(root)` 可从 WidgetTree 移除界面并释放节点。
+---
 
-## 许可证
-MIT License，详见 `LICENSE`。
+<h2 id="ca757ae1">Why use ReactorUMG</h2>
+
+UMG is powerful, but it lacks a text-first, programmable front-end ecosystem, making it hard to plug into AI and front-end engineering practices (componentization, hot reload, static checks, automated testing, etc.). That slows teams who need quick iteration.
+To solve this, we built the ReactorUMG plugin. **ReactorUMG** lets you use **native React + TypeScript + AI** to quickly build game UI or editor UI. It is WYSIWYG, supports live preview and hot reload while editing, and connects modern web front-end practices to game UI development.
+
+---
+
+<h2 id="d2ffce75">Core Features</h2>
+
++ **Native React experience**: Supports React Hooks, function/class components, TSX syntax, React container layouts, React native components, and UMG components.
++ **Scriptable interaction**: Use PuerTS to call engine and editor scripting interfaces as a Blueprint substitute.
++ **AI-assisted development**: Use AI Coding to quickly build editor tool panels, runtime UI, and reusable component libraries.
++ **Live preview**: Hot-reload validation and in-editor live preview to verify layout and interaction quickly.
++ **Comprehensive examples**: Samples and templates from beginner to advanced.
++ **UI animation**: Import Spine and Rive UI animations.
+
+---
+
+<h2 id="19c93d0a">Development System Requirements</h2>
+
++ Unreal Engine **5.x**
++ **Node.js >= 18** and **Yarn / PNPM / NPM** (choose one)
++ VSCode / Cursor (recommended)
++ Windows 10/11, Linux
+
+---
+
+<h2 id="2e52a2da">Install and Quick Start</h2>
+
+**Minimal Setup**
+
++ Download the plugin and place it in the project's Plugins directory;
++ Run the initialization script setup_win.bat;
++ Launch the project, create a ReactorUMG->EditorUtilityWidget asset, and write UI scripts under <ProjectDir>/TypeScript/<ProjectName>/Editor/<AssetName>.
+
+See the docs: https://caleb196x.github.io/ReactorUMGOnlineDoc/quickstart/
+
+---
+
+<h2 id="x0qyv">Runtime UI Supported Platforms</h2>
+
++ Windows, Android, Linux
+
+<h2 id="faq">FAQ</h2>
+
+**Q: How does this relate to native UMG/Slate?**
+A: ReactorUMG targets teams who build UI with React and complements UMG/Slate; it still relies on UE for UI rendering and the scripting bridge.
+
+**Q: How is performance?**
+A: UI complexity and state-change frequency affect performance. Control component granularity, lift state, reduce unnecessary re-renders, and disable debug overhead when needed.
+
+---
+
+<h2 id="c644eeae">Roadmap</h2>
+
+- [x] Support basic native React components and basic CSS styles
+- [ ] Design a ReactorUMG-centered component library to support complex game UI, improving runtime efficiency and stability
+- [ ] Support Tailwind CSS
+...
+
+Want something not listed? Submit a request in Issues.
+
+---
+
+<h2 id="f31ccad5">Contribution Guide</h2>
+
+We welcome all kinds of contributions: bug reports, docs updates, feature proposals, and PRs.
+
+1. Fork the repo and create a branch: `feat/your-feature` or `fix/your-bug`
+2. Run local examples to validate changes
+3. Submit a PR with a brief summary of motivation, scope, and testing
+
+See **CONTRIBUTING.md** for submission flow, coding standards, and commit message conventions.
+
+---
+
+<h2 id="20a28457">License</h2>
+
+This project uses the **MIT License**. See **LICENSE** for details.
+
+---
+
+<h2 id="477c63ed">Links and Resources</h2>
+
++ **Docs Home**: https://caleb196x.github.io/ReactorUMGOnlineDoc/
++ **Sample Project**: https://github.com/Caleb196x/ReactorUMGDemo
++ **Release Downloads (Releases)**: __
++ **Issues and Suggestions (Issues)**: __
++ **Discussion Board (Discussions)**: __
+
+---
+
+If this project helps you, feel free to **Star**, **share**, and tell us your use cases and needs!
