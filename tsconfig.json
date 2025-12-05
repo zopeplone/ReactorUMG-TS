@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "target": "esnext",
+    "module": "commonjs",
+    "allowSyntheticDefaultImports": false,
+    "esModuleInterop": false,
+    "experimentalDecorators": true,
+    "jsx": "react",
+    "sourceMap": true,
+    "baseUrl": ".",
+    "rootDir": ".",
+    "typeRoots": [
+      "./node_modules/@types"
+    ]
+  }
+}
