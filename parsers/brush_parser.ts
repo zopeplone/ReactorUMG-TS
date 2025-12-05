@@ -1,4 +1,4 @@
-import { ImageStyle } from 'reactorUMG';
+import { ImageStyle } from 'reactorumg';
 import * as UE from 'ue';
 import { parseToLinearColor } from './css_color_parser';
 import { ImageLoader } from '../misc/image_loader';

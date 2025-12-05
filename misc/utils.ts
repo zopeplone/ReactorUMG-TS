@@ -1,4 +1,3 @@
-import { convertCssToStyles } from "../parsers/cssstyle_parser";
 
 export function isKeyOfRecord(key: any, record: Record<string, any>): key is keyof Record<string, any> {
     return key in record;

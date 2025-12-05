@@ -1,4 +1,4 @@
-declare module "reactorUMG" {
+declare module "reactorumg" {
     import * as React from 'react';
     import * as UE from 'ue';
     import * as CssType from 'csstype';

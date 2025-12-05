@@ -1,6 +1,6 @@
 import * as UE from 'ue';
 import { UMGConverter } from '../umg_converter';
-import { Rive } from 'reactorUMG';
+import { Rive } from 'reactorumg';
 
 export class RiveConverter extends UMGConverter {
     constructor(typeName: string, props: any, outer: any) {
