@@ -14,7 +14,7 @@
   "description": "ReactorUMG is a helper plugin for Unreal Engine that lets you build UMG game UI and editor UI using React.",
   "scripts": {
     "build": "tsc",
-    "newversion": "npm version patch && npm publish --access public",
+    "newversion": "npm version patch && npm publish",
     "lint": "eslint .",
     "test": "c8 --reporter=none --include \"**/*.ts\" tsx ./node_modules/mocha/bin/mocha --exit --require test/setup.ts --extension ts \"test/**/*.test.ts\"",
     "posttest": "c8 report --reporter=text --reporter=lcov --reporter=html --report-dir coverage"

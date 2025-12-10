@@ -11,6 +11,19 @@
 <img src="./docs/imgs/Cover.png" width="600" alt="Cover" />
 
 **This part is the TypeScript runtime scripts bundled with the ReactorUMG plugin, published as an NPM package.**
+Here is the English translation of the text:
+
+🚀 Quick Start
+
+-   **Install Dependencies:** npm install
+-   **Run Unit Tests:** npm test (Uses Mocha + c8, reports output to coverage/)
+-   **Build Artifacts:** npm run build
+-   **Code Linting:** npm run lint
+-   **Publish to NPM:**
+    1.  First, log in: npm login
+    2.  Adjust the version number as needed: npm version [patch|minor|major]
+    3.  Then publish: npm publish
+    - *Tip: You can also directly execute npm run newversion to automatically increment the patch version and publish.*
 
 ---
 

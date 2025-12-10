@@ -12,6 +12,20 @@
 
 **这部分为ReactorUMG插件配套的TypeScript运行脚本，已发布为NPM包**
 
+这是一份关于项目开发流程的快速操作指南，以下是翻译后的中文版本：
+
+🚀 快速操作
+
+-   **安装依赖：** npm install
+-   **运行单测：** npm test（使用 Mocha + c8，报告输出到 coverage/ 目录）
+-   **构建产物：** npm run build
+-   **代码检查：** npm run lint
+-   **发布 NPM：**
+    1.  首先登录：npm login
+    2.  按需调整版本号：npm version [patch|minor|major]
+    3.  然后发布：npm publish
+    -   *提示：也可以直接执行 npm run newversion 命令，该命令会自动完成补丁号递增并发布。*
+
 ---
 
 ReactorUMG是一款可以帮助您在虚幻引擎（Unreal Engine）中使用 **React** 开发 **UMG** 游戏UI和编辑器UI的辅助插件。
