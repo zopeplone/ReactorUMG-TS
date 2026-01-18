@@ -5,7 +5,7 @@ const Reconciler = require("react-reconciler");
 const UE = require("ue");
 const converter_1 = require("./converter");
 const React = require("react");
-const ReactorContext_1 = require("context/ReactorContext");
+const ReactorContext_1 = require("./context/ReactorContext");
 const REACT_ELEMENT_TYPE = typeof Symbol === 'function' ? Symbol.for('react.element') : 0;
 function isReactElement(value) {
     return value && typeof value === 'object' && value.$$typeof === REACT_ELEMENT_TYPE;

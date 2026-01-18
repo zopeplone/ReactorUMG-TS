@@ -3,7 +3,7 @@ import * as puerts from 'puerts';
 import * as UE from 'ue';
 import { createElementConverter, ElementConverter } from './converter';
 import * as React from 'react';
-import { ReactorContext } from 'context/ReactorContext';
+import { ReactorContext } from './context/ReactorContext';
 
 const REACT_ELEMENT_TYPE = typeof Symbol === 'function' ? Symbol.for('react.element') : 0;
 

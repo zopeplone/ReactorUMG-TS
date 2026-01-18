@@ -704,6 +704,7 @@ declare module "reactorumg" {
     }
 
     var ReactorUMG : TReactorUMG;
+    var ReactorContext: React.Context<{ rootWidgetTree: UE.WidgetTree; }>
 }
 
 declare function getCssStyleFromGlobalCache(className: string, pseudo?: string, mediaQuery?: string | null): Record<string, any> | undefined;
