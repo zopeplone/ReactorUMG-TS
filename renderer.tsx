@@ -2,6 +2,8 @@
 import * as puerts from 'puerts';
 import * as UE from 'ue';
 import { createElementConverter, ElementConverter } from './converter';
+import * as React from 'react';
+import { ReactorContext } from 'context/ReactorContext';
 
 const REACT_ELEMENT_TYPE = typeof Symbol === 'function' ? Symbol.for('react.element') : 0;
 
@@ -320,7 +322,10 @@ export const ReactorUMG = {
         const root = new RootContainer(inWidgetTree);
         const container = reconciler.createContainer(root, 0, null, false, false, "", null, null);
         root.reconcilerContainer = container;
-        reconciler.updateContainer(reactElement, container, null, null);
+        const Context = {
+            rootWidgetTree: inWidgetTree
+        }
+        reconciler.updateContainer(<ReactorContext.Provider value={Context}>{reactElement}</ReactorContext.Provider>, container, null, null);
         return root;
     },
     release: function(root: RootContainer) {

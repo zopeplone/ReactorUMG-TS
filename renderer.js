@@ -4,6 +4,8 @@ exports.ReactorUMG = void 0;
 const Reconciler = require("react-reconciler");
 const UE = require("ue");
 const converter_1 = require("./converter");
+const React = require("react");
+const ReactorContext_1 = require("context/ReactorContext");
 const REACT_ELEMENT_TYPE = typeof Symbol === 'function' ? Symbol.for('react.element') : 0;
 function isReactElement(value) {
     return value && typeof value === 'object' && value.$$typeof === REACT_ELEMENT_TYPE;
@@ -284,7 +286,10 @@ exports.ReactorUMG = {
         const root = new RootContainer(inWidgetTree);
         const container = reconciler.createContainer(root, 0, null, false, false, "", null, null);
         root.reconcilerContainer = container;
-        reconciler.updateContainer(reactElement, container, null, null);
+        const Context = {
+            rootWidgetTree: inWidgetTree
+        };
+        reconciler.updateContainer(React.createElement(ReactorContext_1.ReactorContext.Provider, { value: Context }, reactElement), container, null, null);
         return root;
     },
     release: function (root) {

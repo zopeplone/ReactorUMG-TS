@@ -12,7 +12,8 @@
     "typeRoots": [
       "./node_modules/@types",
       "./types"
-    ]
+    ],
+    "ignoreDeprecations": "6.0"
   },
   "exclude": [
     "node_modules",
